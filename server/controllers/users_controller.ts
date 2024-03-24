@@ -1,11 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
 import { authMiddleware } from "../middleware/authentication";
 import { UsersRepository } from "../repositories/users_respository";
 
-// /users/...
 export const buildUsersController = (usersRepository: UsersRepository) => {
   const router = Router();
 

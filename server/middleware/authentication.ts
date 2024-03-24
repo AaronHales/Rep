@@ -12,9 +12,7 @@ export const authMiddleware: Middleware = async (req, res, next) => {
   }
   try {
     const payload = jwt.verify(token, process.env.ENCRYPTION_KEY as string) as JwtPayload
-    console.log(payload);
     const user = await UsersRepository.getInstance().getUserById(payload.userId);
-    console.log(user);
     if (!user) {
       throw Error("no user found")
     }
