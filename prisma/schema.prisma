@@ -20,17 +20,62 @@ model User {
   lastName      String
   email         String   @unique
   password_hash String
-  profile       Profile  @relation(fields: [profileId], references: [id])
+  reptiles      Reptile[]
+  schedules     Schedule[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  profileId     Int      @unique
 }
 
-model Profile {
+model Reptile {
   id              Int      @id @default(autoincrement())
-  age             Int?
-  profileImageUrl String?
+  userId          Int
+  user            User @relation(fields: [userId], references: [id])
+  species         String
+  name            String
+  sex             String
+  feedings        Feeding[]
+  husbandryRecords HusbandryRecord[]
+  schedules       Schedule[]
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  user            User?
+}
+
+model Feeding {
+  id              Int @id @default(autoincrement())
+  reptileId       Int
+  reptile         Reptile @relation(fields: [reptileId], references: [id])
+  foodItem        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model HusbandryRecord {
+  id              Int @id @default(autoincrement())
+  reptileId       Int
+  reptile         Reptile @relation(fields: [reptileId], references: [id])
+  length          Float
+  weight          Float
+  temperature     Float
+  humidity        Float 
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Schedule {
+  id              Int @id @default(autoincrement())
+  reptileId       Int
+  reptile         Reptile  @relation(fields: [reptileId], references: [id])
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  type            String
+  description     String
+  monday          Boolean
+  tuesday         Boolean
+  wednesday       Boolean
+  thursday        Boolean
+  friday          Boolean
+  saturday        Boolean
+  sunday          Boolean
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
