@@ -35,7 +35,7 @@ export const Home = () => {
       <h1>{count}</h1>
       <div>
         <button onClick={add}>Increment</button>
-        <button>Decrement</button>
+        <button onClick={subtract}>Decrement</button>
       </div>
     </div>
   )
