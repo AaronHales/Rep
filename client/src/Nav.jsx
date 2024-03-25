@@ -1,16 +1,17 @@
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import './styles/nav.css';
 
-function App() {
+function Nav() {
   const authToken = useSelector(state => state.application.authToken)
   return (
-    <div>
-      <nav className="my-nav"><h2>App Name</h2>{
+    <div id="page">
+      <nav><h2>Reptile Tracker</h2>{
         !authToken && (
-          <>
-            <Link to="/sign_up">Create Account </Link>
+          <div>
             <Link to="/login">Sign In</Link>
-          </>
+            <Link to="/sign_up">Create Account </Link>
+          </div>
         )
       }</nav>
       <Outlet />
@@ -18,4 +19,4 @@ function App() {
   );
 }
 
-export default App
+export default Nav

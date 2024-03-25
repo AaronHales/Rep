@@ -1,0 +1,43 @@
+#page {
+    height: 100%;
+}
+
+nav {
+    margin-top: 0px;
+    background-color: seagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav h2 {
+    font-size: 60px;
+    margin: 0px;
+}
+
+nav div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 20px;
+}
+
+a {
+    background-color: brown;
+    color: black;
+    text-decoration: none;
+    border-style: solid;
+    border-radius: 6px;
+    margin: 6px;
+    padding: 6px;
+}
+
+a:hover {
+    box-shadow: .5px .5px .5px rgb(156, 66, 66);
+    color: rgb(156, 66, 66);
+    background-color: white;
+}
+
+a:visited {
+    color: black;
+}
