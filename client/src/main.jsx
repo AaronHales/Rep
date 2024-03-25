@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import Nav from './Nav.jsx'
+import './styles/index.css'
 import {createHashRouter, RouterProvider} from "react-router-dom";
 import {Provider, useSelector} from 'react-redux';
 import store from './store/store';
@@ -13,7 +13,7 @@ import { Api, ApiContext } from './utils/api.js';
 const router = createHashRouter([
   {
     path: "",
-    element:  <App />,
+    element:  <Nav />,
     children: [
       {
         path: "",

@@ -9,7 +9,6 @@ import { buildSessionsController } from "./server/controllers/sessions_controlle
 import { buildHomeController } from "./server/controllers/home_controller";
 import { UsersRepository } from "./server/repositories/users_respository";
 
-
 const db = new PrismaClient();
 const usersRepository = UsersRepository.getInstance(db);
 
@@ -40,7 +39,6 @@ if (!DEBUG) {
     }
   });
 }
-
 
 app.use("/", buildHomeController());
 app.use("/users", buildUsersController(usersRepository));

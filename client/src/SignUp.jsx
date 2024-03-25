@@ -3,6 +3,7 @@ import { useApi } from "./utils/use_api";
 import { useDispatch } from "react-redux";
 import { setAuthToken } from "./store/application_slice";
 import { useNavigate } from "react-router-dom";
+import "./styles/form.css";
 
 export const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -26,9 +27,8 @@ export const SignUp = () => {
   }
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form className="sign-up-form" onSubmit={createUser}>
+    <div className="form-container">
+      <form className="form" onSubmit={createUser}>
         <input
           placeholder="First name"
           type="text"
