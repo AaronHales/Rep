@@ -1,8 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import './styles/app.css';
+import './styles/nav.css';
 
-function App() {
+function Nav() {
   const authToken = useSelector(state => state.application.authToken)
   return (
     <div id="page">
@@ -19,4 +19,4 @@ function App() {
   );
 }
 
-export default App
+export default Nav
