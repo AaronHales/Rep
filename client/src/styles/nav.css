@@ -41,3 +41,24 @@ a:hover {
 a:visited {
     color: black;
 }
+
+.logout-div {
+    justify-content: end;
+}
+
+.logout {
+    background-color: brown;
+    color: black;
+    border-style: solid;
+    border-radius: 6px;
+    margin: 6px;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.logout:hover {
+    box-shadow: .5px .5px .5px rgb(156, 66, 66);
+    color: rgb(156, 66, 66);
+    background-color: white;
+}
