@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Reptile } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 export type CreateUserPayload = {
@@ -6,6 +6,7 @@ export type CreateUserPayload = {
   password: string,
   firstName: string,
   lastName: string,
+  reptiles: Array<Reptile>,
 }
 
 export class UsersRepository {
@@ -30,6 +31,9 @@ export class UsersRepository {
         password_hash: bcrypt.hashSync(password),
         firstName: firstName,
         lastName: lastName,
+        reptiles:{
+          create: []
+        }
       }
     });
   }
