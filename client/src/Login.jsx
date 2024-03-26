@@ -18,7 +18,6 @@ export const Login = () => {
       email,
       password,
     });
-
     dispatch(setAuthToken(token));
     navigate("/")
   }
