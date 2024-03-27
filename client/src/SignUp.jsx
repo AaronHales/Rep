@@ -13,6 +13,7 @@ export const SignUp = () => {
   const api = useApi();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   async function createUser(e) {
     e.preventDefault();
     const res = await api.post("/users", {
