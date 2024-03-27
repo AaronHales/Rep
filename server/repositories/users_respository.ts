@@ -6,7 +6,6 @@ export type CreateUserPayload = {
   password: string,
   firstName: string,
   lastName: string,
-  reptiles: Array<Reptile>,
 }
 
 export class UsersRepository {
