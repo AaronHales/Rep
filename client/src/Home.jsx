@@ -11,33 +11,27 @@ export const Home = () => {
   const api = useApi();
 
   async function getUser() {
-    const {user} = await api.get("/users/me");
+    const user = await api.get("/users/me");
     setUser(user);
-  }
-
-  async function getReptiles() {
-    const reptiles = await api.get("/reptile");
-    setReptiles(reptiles.reptiles);
+    setReptiles(user.reptiles);
   }
 
   useEffect(() => {
     getUser();
-    getReptiles();
   }, [])
 
   return (
     <>
       <div>{user && <h1>Welcome, {user.firstName}</h1>}</div>
-      <div>{reptiles ? <div>{reptiles.map(reptile => (
+      {reptiles ? <div className="reptile-container">{reptiles.map(reptile => (
         <Link className="reptile" key={reptile.id} to={`/reptile/${reptile.id}`}>
-          <div>{reptile.name}</div>
-          <div>{reptile.species}</div>
-          <div>{reptile.sex}</div>
+          <div className="name">{reptile.name} ({reptile.sex})</div>
+          <div className="species">{reptile.species}</div>
         </Link>
       ))}
-      </div> 
+      </div>
       :
-      <div>No reptiles yet, create one!</div>}</div>
+      <div>No reptiles yet, create one!</div>}
     </>
   )
 }
