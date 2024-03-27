@@ -2,8 +2,9 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import { authMiddleware } from "../middleware/authentication";
 import { UsersRepository } from "../repositories/users_respository";
+import { PrismaClient } from "@prisma/client";
 
-export const buildUsersController = (usersRepository: UsersRepository) => {
+export const buildUsersController = (db: PrismaClient, usersRepository: UsersRepository) => {
   const router = Router();
 
   router.post("/", async (req, res) => {
@@ -16,8 +17,16 @@ export const buildUsersController = (usersRepository: UsersRepository) => {
     res.json({ user, token });
   });
 
-  router.get("/me", authMiddleware, (req, res) => {
-    res.json({ user: req.user });
+  router.get("/me", authMiddleware, async (req, res) => {
+    const user = await db.user.findUnique({
+      where: {
+        id: req.user?.id,
+      },
+      include: {
+        reptiles: true,
+      }
+    })
+    res.json(user);
   });
 
   return router;

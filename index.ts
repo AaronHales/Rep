@@ -44,7 +44,7 @@ if (!DEBUG) {
 }
 
 app.use("/", buildHomeController());
-app.use("/users", buildUsersController(usersRepository));
+app.use("/users", buildUsersController(db, usersRepository));
 app.use("/sessions", buildSessionsController(db));
 app.use("/reptile", buildReptileController(db, reptileReposity));
 
