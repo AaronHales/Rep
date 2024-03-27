@@ -29,3 +29,7 @@
     background-color: brown;
     cursor: pointer;
 }
+
+.radio {
+    display: flex;
+}

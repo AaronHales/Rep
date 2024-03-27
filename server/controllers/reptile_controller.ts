@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
 import { authMiddleware } from "../middleware/authentication";
 import { ReptilesRepository } from "../repositories/reptiles_respository";
 

@@ -1,0 +1,6 @@
+.reptile {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 40%;
+}
