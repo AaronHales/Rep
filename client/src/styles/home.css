@@ -10,6 +10,20 @@
     align-items: center;
     width: auto;
     min-width: 20%;
+    color: black;
+    margin: 6px;
+    padding: 6px;
+    text-decoration: none;
+    border-radius: 6px;
+    border-style: solid;
+}
+
+.reptile:hover {
+    box-shadow: .25px .25px .25px white;
+}
+
+.reptile:visited {
+    color: black;
 }
 
 .name {

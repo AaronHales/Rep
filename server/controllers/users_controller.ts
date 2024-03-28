@@ -24,6 +24,7 @@ export const buildUsersController = (db: PrismaClient, usersRepository: UsersRep
       },
       include: {
         reptiles: true,
+        schedules: true,
       }
     })
     res.json(user);

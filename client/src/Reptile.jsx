@@ -11,7 +11,6 @@ export function Reptile() {
     
     async function getReptile() {
         const { reptile } = await api.get(`/reptile/${id}`);
-        console.log(reptile);
         setReptile(reptile);
     }
 
@@ -21,7 +20,28 @@ export function Reptile() {
 
     return (
         <>
-            {reptile ? <div>{reptile.name}</div> : <h1>Couldn't find that reptile!</h1>}
+            {reptile ?
+             <div 
+             className="reptile-title"
+             style={{
+                display: "flex", 
+                flexDirection: "column", 
+                alignItems: "center"}}>
+                <div 
+                style={{
+                    fontSize: "35px", 
+                    fontWeight: "bold"}}>
+                    {reptile.name}({reptile.sex.toUpperCase()})
+                </div>
+                <div 
+                style={{
+                    fontSize: "20px", 
+                    fontStyle: "italic"}}>
+                    {reptile.species}
+                </div>
+             </div>
+             :
+            <h1>Couldn't find that reptile!</h1>}
         </>
     )
 
