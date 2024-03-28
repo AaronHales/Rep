@@ -4,6 +4,12 @@
     flex-wrap: wrap;
 }
 
+.schedule-container {
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+}
+
 .reptile {
     display: flex;
     flex-direction: column;
