@@ -16,7 +16,12 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
 
   router.get("/:id", authMiddleware, async (req, res) => {
     const reptile = await db.reptile.findUnique({
-        where: {userId: req.user?.id, id: +req.params.id}
+        where: {userId: req.user?.id, id: +req.params.id},
+        include: {
+          schedules: true,
+          feedings: true,
+          husbandryRecords: true
+        }
     });
     res.json({ reptile});
   });
