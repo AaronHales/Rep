@@ -17,16 +17,16 @@ function Nav() {
       <nav>
         <h2>Reptile Tracker</h2>
         {authToken && <div>
-          <Link to="/">Home</Link>
-          <Link to="/reptile">New Reptile</Link>
+          <Link className="button" to="/">Home</Link>
+          <Link className="button" to="/reptile">New Reptile</Link>
           <button className="logout" onClick={logout}>Logout</button>
           </div>
         }
         {
         !authToken && (
           <div>
-            <Link to="/login">Sign In</Link>
-            <Link to="/sign_up">Create Account </Link>
+            <Link className="button"to="/login">Sign In</Link>
+            <Link className="button"to="/sign_up">Create Account </Link>
           </div>
         )
         }

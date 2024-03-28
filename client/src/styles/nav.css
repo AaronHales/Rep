@@ -22,7 +22,7 @@ nav div {
     font-size: 20px;
 }
 
-a {
+.button {
     background-color: brown;
     color: black;
     text-decoration: none;
@@ -32,13 +32,13 @@ a {
     padding: 6px;
 }
 
-a:hover {
+.button:hover {
     box-shadow: .5px .5px .5px rgb(156, 66, 66);
     color: rgb(156, 66, 66);
     background-color: white;
 }
 
-a:visited {
+.button:visited {
     color: black;
 }
 
