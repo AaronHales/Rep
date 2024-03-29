@@ -21,7 +21,7 @@ export function NewReptile() {
           sex,
         });
         navigate("/");
-      }
+    }
 
     return (
         <div className="form-container">

@@ -11,16 +11,15 @@ function Nav() {
     dispatch(setAuthToken(null));
   }
 
-
   return (
-    <div id="page">
+    <>
       <nav>
         <h2>Reptile Tracker</h2>
         {authToken && <div>
           <Link className="button" to="/">Home</Link>
           <Link className="button" to="/reptile">New Reptile</Link>
           <button className="logout" onClick={logout}>Logout</button>
-          </div>
+        </div>
         }
         {
         !authToken && (
@@ -31,8 +30,8 @@ function Nav() {
         )
         }
       </nav>
-      <Outlet />
-    </div>
+      <Outlet/>
+    </>
   );
 }
 

@@ -3,6 +3,8 @@ import { useApi } from "./utils/use_api";
 import { requireLogin } from "./utils/require_login";
 import { Link } from "react-router-dom";
 import "./styles/home.css";
+import { intToColor } from "./utils/intToColor";
+
 
 export const Home = () => {
   requireLogin();
@@ -10,6 +12,7 @@ export const Home = () => {
   const [reptiles, setReptiles] = useState([]);
   const [schedules, setSchedules] = useState([]);
   const api = useApi();
+  const today = new Date().getDay();
 
   async function getUser() {
     const user = await api.get("/users/me");
@@ -22,19 +25,15 @@ export const Home = () => {
     getUser();
   }, [])
 
-  function intToColor(id) {
-    // Simple hashing function to map an integer to a color
-    const hash = (id * 2654435761) % (2 ** 32); // Knuth's multiplicative hash
-    const color = '#' + ('00000' + (hash & 0xFFFFFF).toString(16)).slice(-6); // Extract RGB components
-    return color;
+  function isScheduleToday(schedule) {
+    return (today === 1 && schedule.monday) || (today === 2 && schedule.tuesday) || (today === 3 && schedule.wednesday)
+     || (today === 4 && schedule.thursday) || (today === 5 && schedule.friday) || (today === 6 && schedule.saturday)
+      || (today === 7 && schedule.sunday);
   }
-
-  console.log(user);
-  console.log(schedules)
 
   return (
     <>
-      <div>{user && <h1>Welcome, {user.firstName}</h1>}</div>
+      <h1 style={{display: "flex", justifyContent: "center"}}>Welcome, {user && user.firstName}</h1>
       <div style={{display: "flex"}}>
         {reptiles ? <div className="reptile-container" >{reptiles.map(reptile => (
           <Link 
@@ -50,14 +49,24 @@ export const Home = () => {
         :
         <div>No reptiles yet, create one!</div>}
         {schedules ? <div className="schedule-container" >{schedules.map(schedule => (
+          isScheduleToday(schedule) && 
           <Link 
           style={{backgroundColor: `${intToColor(schedule.reptileId)}`}} 
-          className="reptile"
+          className="schedule"
           key={schedule.id} 
           to={`/schedule/${schedule.id}`}>
-            
             <div className="name">{schedule.type}</div>
             <div className="species">{schedule.description}</div>
+            <div className="days">
+              Days of the Week: 
+              {schedule.monday && <div style={today === 1 ? {fontWeight: "bold"} : {}}>Monday</div>}
+              {schedule.tuesday && <div style={today === 2 ? {fontWeight: "bold"} : {}}>Tuesday</div>}
+              {schedule.wednesday && <div style={today === 3 ? {fontWeight: "bold"} : {}}>Wednesday</div>}
+              {schedule.thursday && <div style={today === 4 ? {fontWeight: "bold"} : {}}>Thursday</div>}
+              {schedule.friday && <div style={today === 5 ? {fontWeight: "bold"} : {}}>Friday</div>}
+              {schedule.saturday && <div style={today === 6 ? {fontWeight: "bold"} : {}}>Saturday</div>}
+              {schedule.sunday && <div style={today === 7 ? {fontWeight: "bold"} : {}}>Sunday</div>}
+            </div>
           </Link>
         ))}
         </div>

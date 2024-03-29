@@ -3,6 +3,7 @@ import { useApi } from "./utils/use_api";
 import { useEffect, useState } from "react";
 import { requireLogin } from "./utils/require_login";
 import "./styles/reptile.css";
+import { intToColor } from "./utils/intToColor";
 
 export function Reptile() {
     requireLogin();
@@ -27,21 +28,12 @@ export function Reptile() {
         minute: 'numeric'
     };
 
-    function intToColor(id) {
-        // Simple hashing function to map an integer to a color
-        const hash = (id * 2654435761) % (2 ** 32); // Knuth's multiplicative hash
-        const color = '#' + ('00000' + (hash & 0xFFFFFF).toString(16)).slice(-6); // Extract RGB components
-        return color;
-    }
     let color;
 
     if (reptile) {
         color = intToColor(reptile.id);
-        console.log(color)
     }
-
     
-
     return (
         <>
             {reptile ?
@@ -58,7 +50,7 @@ export function Reptile() {
                 <div>
                     <h2>Feedings</h2>
                     {reptile.feedings.map(feeding => (
-                        <div className="feeding" key={feeding.id} style={{backgroundColor: `${color}`}}>
+                        <div className="info" key={feeding.id} style={{backgroundColor: `${color}`}}>
                             <div>Food: {feeding.foodItem}</div>
                             <div>Recorded: {new Date(feeding.createdAt).toLocaleDateString("en-us", dateOptions)}</div>
                         </div>
@@ -67,7 +59,7 @@ export function Reptile() {
                 <div>
                     <h2>Husbandry Records</h2>
                     {reptile.husbandryRecords.map(record => (
-                        <div className="record" key={record.id} style={{backgroundColor: `${color}`}}>
+                        <div className="info" key={record.id} style={{backgroundColor: `${color}`}}>
                             <div>Length: {record.length}</div>
                             <div>Weight: {record.weight}</div>
                             <div>Temperature: {record.temperature}</div>
@@ -79,10 +71,10 @@ export function Reptile() {
                 <div>
                     <h2>Schedules</h2>
                     {reptile.schedules.map(schedule => (
-                        <div className="schedule" key={schedule.id} style={{backgroundColor: `${color}`}}>
+                        <div className="info" key={schedule.id} style={{backgroundColor: `${color}`}}>
                             <div>Type: {schedule.type}</div>
                             <div>Description: {schedule.description}</div>
-                            <div>
+                            <div className="days">
                                 Days of the Week: 
                                 {schedule.monday && <div>Monday</div>}
                                 {schedule.tuesday && <div>Tuesday</div>}
