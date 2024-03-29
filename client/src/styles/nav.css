@@ -62,3 +62,10 @@ nav div {
     color: rgb(156, 66, 66);
     background-color: white;
 }
+
+.header-name {
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+}

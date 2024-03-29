@@ -5,25 +5,12 @@
     padding: 6px;
 }
 
-.feeding {
+.info {
     margin: 6px;
     padding: 6px;
     border-style: solid;
     color: black;
-}
-
-.record {
-    margin: 6px;
-    padding: 6px;
-    border-style: solid;
-    color: black;
-}
-
-.schedule {
-    margin: 6px;
-    padding: 6px;
-    border-style: solid;
-    color: black;
+    border-radius: 6px;
 }
 
 .reptile-title {
