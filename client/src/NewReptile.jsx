@@ -15,7 +15,7 @@ export function NewReptile() {
 
     async function createReptile(e) {
         e.preventDefault();
-        const res = await api.post("/reptile/create", {
+        const res = await api.post("/reptile", {
           species,
           name,
           sex,

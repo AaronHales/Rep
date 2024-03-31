@@ -7,7 +7,7 @@ export const buildHusbandryController = (db: PrismaClient, husbandryRespository:
   const router = Router();
 
   router.post("/:reptileId", authMiddleware, async (req, res) => {
-    if (typeof req.body.length === "number" && typeof req.body.weight === "number" && typeof req.body.temperature === "number" && typeof req.body.humidity === "number") {
+    if (typeof(req.body.length) === "number" && typeof(req.body.weight) === "number" && typeof(req.body.temperature) === "number" && typeof(req.body.humidity) === "number") {
         req.body.reptileId = +req.params.reptileId;
         const husbandryRecord = await husbandryRespository.createHusbandry(req.body);
         res.json({husbandryRecord});

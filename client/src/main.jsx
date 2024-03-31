@@ -11,6 +11,9 @@ import { SignUp } from './SignUp.jsx';
 import { Api, ApiContext } from './utils/api.js';
 import { Reptile } from './Reptile.jsx';
 import { NewReptile } from './NewReptile.jsx';
+import { NewFeeding } from './NewFeeding.jsx';
+import { NewHusbandry } from './NewHusbandry.jsx';
+import { NewSchedule } from './NewSchedule.jsx';
 
 const router = createHashRouter([
   {
@@ -37,6 +40,19 @@ const router = createHashRouter([
         path: "/reptile",
         element: <NewReptile />
       },
+      {
+        path: "/schedule/:id",
+        element: <NewSchedule />
+      },
+      {
+        path: "/husbandry/:id",
+        element: <NewHusbandry />
+      },
+      {
+        path: "/feeding/:id",
+        element: <NewFeeding />
+      },
+
     ]
   }
 ])
