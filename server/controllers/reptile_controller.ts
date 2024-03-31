@@ -26,7 +26,7 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
     res.json({ reptile});
   });
 
-  router.post("/create", authMiddleware, async (req, res) => {
+  router.post("/", authMiddleware, async (req, res) => {
     if (req.body.sex == 'm' || req.body.sex == 'M' || req.body.sex == 'f' || req.body.sex == 'F') {
         req.body.userId = req.user?.id;
         const reptile = await reptilesRepository.createReptile(req.body);
