@@ -7,6 +7,14 @@ export type CreateReptilePayload = {
   userId: number,
 }
 
+export type updateReptilePayload = {
+    species: string,
+    name: string,
+    sex: string,
+    id: number,
+
+}
+
 export class ReptilesRepository {
   private db: PrismaClient
   private static instance: ReptilesRepository
@@ -30,6 +38,19 @@ export class ReptilesRepository {
         sex: sex,
         userId: userId,
       }
+    });
+  }
+
+  async updateReptile({species, name, sex, id}: updateReptilePayload) {
+    return this.db.reptile.update({
+        where: {
+            id: id,
+        },
+        data: {
+            species: species,
+            name: name,
+            sex: sex,
+        }
     });
   }
 

@@ -58,7 +58,7 @@ CREATE TABLE "HusbandryRecord" (
 -- CreateTable
 CREATE TABLE "Schedule" (
     "id" SERIAL NOT NULL,
-    "reptileId" INTEGER NOT NULL,
+    "reptileId" INTEGER,
     "userId" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -79,13 +79,13 @@ CREATE TABLE "Schedule" (
 ALTER TABLE "Reptile" ADD CONSTRAINT "Reptile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Feeding" ADD CONSTRAINT "Feeding_reptileId_fkey" FOREIGN KEY ("reptileId") REFERENCES "Reptile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Feeding" ADD CONSTRAINT "Feeding_reptileId_fkey" FOREIGN KEY ("reptileId") REFERENCES "Reptile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "HusbandryRecord" ADD CONSTRAINT "HusbandryRecord_reptileId_fkey" FOREIGN KEY ("reptileId") REFERENCES "Reptile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "HusbandryRecord" ADD CONSTRAINT "HusbandryRecord_reptileId_fkey" FOREIGN KEY ("reptileId") REFERENCES "Reptile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Schedule" ADD CONSTRAINT "Schedule_reptileId_fkey" FOREIGN KEY ("reptileId") REFERENCES "Reptile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Schedule" ADD CONSTRAINT "Schedule_reptileId_fkey" FOREIGN KEY ("reptileId") REFERENCES "Reptile"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Schedule" ADD CONSTRAINT "Schedule_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

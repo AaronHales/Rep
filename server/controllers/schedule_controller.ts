@@ -41,6 +41,16 @@ export const buildScheduleController = (db: PrismaClient, scheduleRepository: Sc
     }
   });
 
+  router.put("/:id/add_to_reptile", authMiddleware, async(req, res) => {
+    const scheduleToUpdate = await db.schedule.findUniqueOrThrow({
+        where: {
+            id: +req.params.id,
+        }
+    });
+    scheduleToUpdate.reptileId = req.body.reptileId;
+    res.json({schedule: scheduleToUpdate});
+  });
+
 
   return router;
 }
