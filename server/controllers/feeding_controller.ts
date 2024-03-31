@@ -7,8 +7,8 @@ export const buildFeedingController = (db: PrismaClient, feedingRespository : Fe
   const router = Router();
 
   router.post("/:reptileId", authMiddleware, async (req, res) => {
-    if (req.body.foodItem == null) {
-        if (typeof req.body.foodItem === "string") {
+    if (req.body.foodItem !== null) {
+        if (typeof(req.body.foodItem) === "string") {
             req.body.reptileId = +req.params.reptileId;
             const feeding = await feedingRespository.createFeeding(req.body);
             res.json({feeding});
