@@ -17,10 +17,6 @@ export const buildHusbandryController = (db: PrismaClient, husbandryRespository:
     }
   });
 
-  router.get("/", authMiddleware, async (req, res) => {
-    
-  });
-
   return router;
 }
 
