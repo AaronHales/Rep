@@ -14,9 +14,12 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
     res.json({ reptiles });
   });
 
-  router.get("/:id", authMiddleware, async (req, res) => {
+  router.get("/:reptileId", authMiddleware, async (req, res) => {
     const reptile = await db.reptile.findUnique({
-        where: {userId: req.user?.id, id: +req.params.id},
+        where: {
+            userId: req.user?.id,
+            id: +req.params.reptileId
+        },
         include: {
           schedules: true,
           feedings: true,
@@ -27,7 +30,7 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
   });
 
   router.post("/", authMiddleware, async (req, res) => {
-    if (typeof(req.body.sex) === "string" && typeof(req.body.species) === "string" && typeof(req.body.name) === "string") {
+    try {
         if (req.body.sex.toLowerCase() === 'm' || req.body.sex.toLowerCase() === 'f') {
             req.body.userId = req.user?.id;
             const reptile = await reptilesRepository.createReptile(req.body);
@@ -39,15 +42,15 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
             res.status(400).json({error: req.body.sex + " is not a valid sex"});
         }
     }
-    else {
-        res.status(400).json({error: "request format is {sex: string, species: string, nane: string}"});
+    catch (error) {
+        res.status(500).json({error: "error encountered while creating reptile " + error});
     }
   });
   
-  router.put("/:id", authMiddleware, async (req, res) => {
+  router.put("/:reptileId", authMiddleware, async (req, res) => {
     const reptileToUpdate = await db.reptile.findUnique({
         where: {
-            id: +req.params.id,
+            id: +req.params.reptileId,
         }
     });
     if (req.body.sex === null) {
@@ -59,7 +62,7 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
     if (req.body.species === null) {
         req.body.species = reptileToUpdate?.sex;
     }
-    if (typeof(req.body.sex) === "string" && typeof(req.body.species) === "string" && typeof(req.body.name) === "string") {
+    try {
         if (req.body.sex.toLowerCase() === "m" || req.body.sex.toLowerCase() === "f") {
             req.body.id = +req.params.id;
             const reptile = await reptilesRepository.updateReptile(req.body);
@@ -70,15 +73,15 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
             res.status(400).json({error: req.body.sex + " is not a valid sex"});
         }
     }
-    else {
-        res.status(400).json({error: "request format is {sex: string, species: string, name: string}"});
+    catch (error) {
+        res.status(500).json({error: "error encountered while updating reptile " + error});
     }
     
   });
 
-  router.delete("/:id", authMiddleware, async (req, res) => {
+  router.delete("/:reptileId", authMiddleware, async (req, res) => {
 
-    const reptileId = +req.params.id;
+    const reptileId = +req.params.reptileId;
 
     try {
         const reptile = await db.reptile.findUnique({
@@ -122,7 +125,8 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
     catch (error) {
         console.error("Error deleting reptile:", error);
         return res.status(500).json({ error: "An unexpected error occurred" });
-}});
+    }
+  });
 
   return router;
 }
