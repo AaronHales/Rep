@@ -48,7 +48,7 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
   });
   
   router.put("/:reptileId", authMiddleware, async (req, res) => {
-    const reptileToUpdate = await db.reptile.findUnique({
+    const reptileToUpdate = await db.reptile.findUniqueOrThrow({
         where: {
             id: +req.params.reptileId,
         }
@@ -64,7 +64,7 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
     }
     try {
         if (req.body.sex.toLowerCase() === "m" || req.body.sex.toLowerCase() === "f") {
-            req.body.id = +req.params.id;
+            req.body.id = +req.params.reptileId;
             const reptile = await reptilesRepository.updateReptile(req.body);
     
             res.json({reptile: reptile});
