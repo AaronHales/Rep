@@ -73,7 +73,7 @@ export function Reptile() {
                 <div className="species">
                     {reptile.species}
                 </div>
-                <button onClick={() => setPopup(!popup)}>{popup ? "Close update form" : `Update ${reptile.name}`}</button>
+                <button className="update" onClick={() => setPopup(!popup)}>{popup ? "Close update form" : `Update ${reptile.name}`}</button>
                 {popup && 
                 <form className="form" onSubmit={updateReptile}>
                     <input

@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useApi } from "./utils/use_api";
+import { useState } from 'react';
 
 export function Schedule(props) {
     const { 
@@ -8,12 +11,24 @@ export function Schedule(props) {
         wrapper,
     } = props;
     const today = new Date().getDay();
+    // const api = useApi();
+    const [popup, setPopup] = useState(false);
 
     function isScheduleToday(schedule) {
         return (today === 1 && schedule.monday) || (today === 2 && schedule.tuesday) || (today === 3 && schedule.wednesday)
          || (today === 4 && schedule.thursday) || (today === 5 && schedule.friday) || (today === 6 && schedule.saturday)
           || (today === 0 && schedule.sunday);
     }
+
+    function clickDelete(id) {
+        setPopup(true);
+        schedules.forEach(schedule => {
+            console.log(schedule)
+        });
+        const element = popup && <div>delete this schedule?</div>
+    }
+
+
     return (
     <>
     {wrapper ? (
@@ -66,6 +81,15 @@ export function Schedule(props) {
                     </div>
                   )}
                 </div>
+                {/* <div className="can-container">
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        clickDelete(schedule.id)
+                    }}
+                    className="delete-reptile">
+                    <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                </div> */}
               </div>
             )
           ))}

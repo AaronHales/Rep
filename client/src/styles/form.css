@@ -37,3 +37,29 @@
 .type-selection {
     padding: 6px;
 }
+
+.radio-options {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 6px;
+    padding: 6px;
+}
+
+.day-selection {
+    display: flex;
+    flex-direction: column;
+}
+
+.update {
+    color: black;
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 6px;
+    cursor: pointer;
+    background-color: rebeccapurple;
+}
+
+.update:hover {
+    box-shadow: .35px .35px .35px white;
+}

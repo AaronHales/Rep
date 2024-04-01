@@ -42,6 +42,8 @@ export function NewSchedule() {
     return (
         <div className="form-container">
             <form className="form" onSubmit={createSchedule}>
+                <div className="radio-options">
+
             <div className="type-selection">
                     Type of Schedule
                     <div className="radio">
@@ -77,63 +79,67 @@ export function NewSchedule() {
                         <label htmlFor="clean">Clean</label>
                     </div>
                 </div>
-                <label>
-                <input
-                type="checkbox"
-                value={monday}
-                onChange={e => setMonday(e.target.checked)}
-                />
-                Monday
-                </label>
-                <label>
-                <input
-                type="checkbox"
-                value={tuesday}
-                onChange={e => setTuesday(e.target.checked)}
-                />
-                Tuesday
-                </label>
-                <label >
-                <input
-                type="checkbox"
-                value={wednesday}
-                onChange={e => setWednesday(e.target.checked)}
-                />
-                Wednesday
-                </label>
-                <label>
-                <input
-                type="checkbox"
-                value={thursday}
-                onChange={e => setThursday(e.target.checked)}
-                />
-                Thursday
-                </label>
-                <label>
-                <input
-                type="checkbox"
-                value={friday}
-                onChange={e => setFriday(e.target.checked)}
-                />
-                Friday
-                </label>
-                <label>
+                <div className="day-selection">
+                    <label>
+                    <input
+                    type="checkbox"
+                    value={monday}
+                    onChange={e => setMonday(e.target.checked)}
+                    />
+                    Monday
+                    </label>
+                    <label>
+                    <input
+                    type="checkbox"
+                    value={tuesday}
+                    onChange={e => setTuesday(e.target.checked)}
+                    />
+                    Tuesday
+                    </label>
+                    <label >
+                    <input
+                    type="checkbox"
+                    value={wednesday}
+                    onChange={e => setWednesday(e.target.checked)}
+                    />
+                    Wednesday
+                    </label>
+                    <label>
+                    <input
+                    type="checkbox"
+                    value={thursday}
+                    onChange={e => setThursday(e.target.checked)}
+                    />
+                    Thursday
+                    </label>
+                    <label>
+                    <input
+                    type="checkbox"
+                    value={friday}
+                    onChange={e => setFriday(e.target.checked)}
+                    />
+                    Friday
+                    </label>
+                    <label>
 
-                <input
-                type="checkbox"
-                value={saturday}
-                onChange={e => setSaturday(e.target.checked)}
-                />
-                Saturday
-                </label>
-                <label>
-                <input
-                type="checkbox"
-                value={sunday}
-                onChange={e => setSunday(e.target.checked)}
-                />
-                Sunday
-                </label>
+                    <input
+                    type="checkbox"
+                    value={saturday}
+                    onChange={e => setSaturday(e.target.checked)}
+                    />
+                    Saturday
+                    </label>
+                    <label>
+                    <input
+                    type="checkbox"
+                    value={sunday}
+                    onChange={e => setSunday(e.target.checked)}
+                    />
+                    Sunday
+                    </label>
+                </div>
+                </div>
+            
                 <input
                 placeholder="description of tasks"
                 type="text"
