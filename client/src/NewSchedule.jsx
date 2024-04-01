@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { requireLogin } from "./utils/require_login"
 import { useApi } from "./utils/use_api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 
 export function NewSchedule() {
@@ -18,6 +18,8 @@ export function NewSchedule() {
     const [sunday, setSunday] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
+    const [searchParams] = useSearchParams()
+    const name = searchParams.get("name")
 
 
     async function createSchedule(e) {
@@ -40,20 +42,41 @@ export function NewSchedule() {
     return (
         <div className="form-container">
             <form className="form" onSubmit={createSchedule}>
-                <input
-                placeholder="type of schedule, feed, record, or clean"
-                type="text"
-                value={type}
-                required
-                onChange={e => setType(e.target.value)}
-                />
-                <input
-                placeholder="description"
-                type="text"
-                value={description}
-                required
-                onChange={e => setDescription(e.target.value)}
-                />
+            <div className="type-selection">
+                    Type of Schedule
+                    <div className="radio">
+                        <input
+                        id="feed"
+                        type="radio"
+                        name="type"
+                        value="Feed"
+                        onChange={e => setType(e.target.value)}
+                        required
+                        />
+                        <label htmlFor="feed">Feed</label>
+                    </div>
+                    <div className="radio">
+                        <input
+                        id="record"
+                        type="radio"
+                        name="type"
+                        value="Record"
+                        onChange={e => setType(e.target.value)}
+                        />
+                        <label htmlFor="record">Record</label>
+                    </div>
+                    <div className="radio">
+                        <input
+                        id="clean"
+                        type="radio"
+                        name="type"
+                        value="Clean"
+                        onChange={e => setType(e.target.value)}
+                        required
+                        />
+                        <label htmlFor="clean">Clean</label>
+                    </div>
+                </div>
                 <label>
                 <input
                 type="checkbox"
@@ -111,7 +134,14 @@ export function NewSchedule() {
                 />
                 Sunday
                 </label>
-                <button>Create Schedule</button>
+                <input
+                placeholder="description of tasks"
+                type="text"
+                value={description}
+                required
+                onChange={e => setDescription(e.target.value)}
+                />
+                <button>Create Schedule for {name}</button>
             </form>
         </div>
     )

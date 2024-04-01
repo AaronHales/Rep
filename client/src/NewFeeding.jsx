@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { requireLogin } from "./utils/require_login"
 import { useApi } from "./utils/use_api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 
 export function NewFeeding() {
@@ -10,6 +10,8 @@ export function NewFeeding() {
     const api = useApi();
     const [foodItem, setFoodItem] = useState("");
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const name = searchParams.get("name")
 
 
     async function createFeeding(e) {
@@ -30,7 +32,7 @@ export function NewFeeding() {
                 required
                 onChange={e => setFoodItem(e.target.value)}
                 />
-                <button>Log Feeding</button>
+                <button>Log Feeding for {name}</button>
             </form>
         </div>
     )

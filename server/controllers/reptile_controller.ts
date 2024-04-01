@@ -71,37 +71,58 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
         }
     }
     else {
-        res.status(400).json({error: "request format is {sex: string, species: string, nane: string}"});
+        res.status(400).json({error: "request format is {sex: string, species: string, name: string}"});
     }
     
   });
 
   router.delete("/:id", authMiddleware, async (req, res) => {
-    const reptile = await db.reptile.findUnique({
-        where: {
-            id: +req.params.id
-        }
-    });
 
-    if (reptile == null) {
-        res.status(400).json({error: "there is no reptile with that id"});
-    }
-    else {
-        const deletedReptile = await db.reptile.delete({
+    const reptileId = +req.params.id;
+
+    try {
+        const reptile = await db.reptile.findUnique({
             where: {
-                id: +req.params.id,
-            },
-            include: {
-                schedules: true,
-                husbandryRecords: true,
-                feedings: true,
-
+                id: reptileId
             }
         });
-        res.json({deletedReptile: deletedReptile});
-    }
 
-  });
+        if (!reptile) {
+            return res.status(404).json({ error: "Reptile not found" });
+        }
+
+        // Delete related records first
+        await db.schedule.deleteMany({
+            where: {
+                reptileId: reptileId
+            }
+        });
+
+        await db.husbandryRecord.deleteMany({
+            where: {
+                reptileId: reptileId
+            }
+        });
+
+        await db.feeding.deleteMany({
+            where: {
+                reptileId: reptileId
+            }
+        });
+
+        // Then delete the reptile
+        const deletedReptile = await db.reptile.delete({
+            where: {
+                id: reptileId
+            }
+        });
+
+        return res.json({ deletedReptile: deletedReptile });
+    } 
+    catch (error) {
+        console.error("Error deleting reptile:", error);
+        return res.status(500).json({ error: "An unexpected error occurred" });
+}});
 
   return router;
 }

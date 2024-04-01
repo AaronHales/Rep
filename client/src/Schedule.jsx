@@ -21,11 +21,10 @@ export function Schedule(props) {
         <div className={className}>
           {schedules.map(schedule => (
             isScheduleToday(schedule) && (
-              <Link
+              <div
                 style={{ backgroundColor: `${intToColor(schedule.reptileId)}` }}
                 className="schedule"
                 key={schedule.id}
-                to={`/schedule/${schedule.id}`}
               >
                 <div className="name">{schedule.type}</div>
                 <div className="species">{schedule.description}</div>
@@ -67,7 +66,7 @@ export function Schedule(props) {
                     </div>
                   )}
                 </div>
-              </Link>
+              </div>
             )
           ))}
         </div>
@@ -76,7 +75,7 @@ export function Schedule(props) {
       schedules &&
       schedules.map(schedule => (
         (
-          <Link
+          <div
             style={{ backgroundColor: `${intToColor(schedule.reptileId)}` }}
             className="schedule"
             key={schedule.id}
@@ -122,7 +121,7 @@ export function Schedule(props) {
                 </div>
               )}
             </div>
-          </Link>
+          </div>
         )
       ))
     )}

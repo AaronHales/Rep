@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { requireLogin } from "./utils/require_login"
 import { useApi } from "./utils/use_api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 
 export function NewHusbandry() {
@@ -13,6 +13,8 @@ export function NewHusbandry() {
     const [humidity, setHumidity] = useState(0)
     const navigate = useNavigate();
     const { id } = useParams();
+    const [searchParams] = useSearchParams()
+    const name = searchParams.get("name")
 
 
     async function createHusbandry(e) {
@@ -30,42 +32,42 @@ export function NewHusbandry() {
         <div className="form-container">
             <form className="form" onSubmit={createHusbandry}>
                 <input
-                placeholder="length"
+                placeholder="length (ft.)"
                 type="number"
-                value={length}
+                value={length === 0 ? "" : length}
                 min={0}
                 step={0.01}
                 required
                 onChange={e => setLength(parseFloat(e.target.value))}
                 />
                 <input
-                placeholder="weight"
+                placeholder="weight (g. or lbs.)"
                 type="number"
-                value={weight}
+                value={weight === 0 ? "" : weight}
                 min={0}
                 step={0.01}
                 required
                 onChange={e => setWeight(parseFloat(e.target.value))}
                 />
                 <input
-                placeholder="temperature"
+                placeholder="temperature (°F)"
                 type="number"
-                value={temperature}
+                value={temperature === 0 ? "" : temperature}
                 min={0}
                 step={0.01}
                 required
                 onChange={e => setTemp(parseFloat(e.target.value))}
                 />
                 <input
-                placeholder="length"
+                placeholder="humidity (%)"
                 type="number"
-                value={humidity}
+                value={humidity === 0 ? "" : humidity}
                 min={0}
                 step={0.01}
                 required
                 onChange={e => setHumidity(parseFloat(e.target.value))}
                 />
-                <button>Log</button>
+                <button>Log record for {name}</button>
             </form>
         </div>
     )

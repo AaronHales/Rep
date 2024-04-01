@@ -27,39 +27,80 @@ export function NewReptile() {
         <div className="form-container">
             <form className="form" onSubmit={createReptile}>
                 <input
-                placeholder="Species"
-                type="text"
-                value={species}
-                required
-                onChange={e => setSpecies(e.target.value)}
-                />
-                <input
                 placeholder="Name"
                 type="text"
                 value={name}
                 required
                 onChange={e => setName(e.target.value)}
                 />
-                <div className="radio">
-                    <input
-                    id="M"
-                    type="radio"
-                    name="sex"
-                    value="M"
-                    onChange={e => setSex(e.target.value)}
-                    required
-                    />
-                    <label htmlFor="M">Male</label>
+                <div className="species-selection">
+                    Species
+                    <div className="radio">
+                        <input
+                        id="ball_python"
+                        type="radio"
+                        name="species"
+                        value="Ball Python"
+                        onChange={e => setSpecies(e.target.value)}
+                        required
+                        />
+                        <label htmlFor="ball_python">Ball Python</label>
+                    </div>
+                    <div className="radio">
+                        <input
+                        id="king_snake"
+                        type="radio"
+                        name="species"
+                        value="King Snake"
+                        onChange={e => setSpecies(e.target.value)}
+                        />
+                        <label htmlFor="king_snake">King Snake</label>
+                    </div>
+                    <div className="radio">
+                        <input
+                        id="corn_snake"
+                        type="radio"
+                        name="species"
+                        value="Corn Snake"
+                        onChange={e => setSpecies(e.target.value)}
+                        required
+                        />
+                        <label htmlFor="corn_snake">Corn Snake</label>
+                    </div>
+                    <div className="radio">
+                        <input
+                        id="redtail_boa"
+                        type="radio"
+                        name="species"
+                        value="Redtail Boa"
+                        onChange={e => setSpecies(e.target.value)}
+                        />
+                        <label htmlFor="redtail_boa">Redtail Boa</label>
+                    </div>
                 </div>
-                <div className="radio">
-                    <input
-                    id="F"
-                    type="radio"
-                    name="sex"
-                    value="F"
-                    onChange={e => setSex(e.target.value)}
-                    />
-                    <label htmlFor="F">Female</label>
+                <div>
+                    Sex
+                    <div className="radio">
+                        <input
+                        id="M"
+                        type="radio"
+                        name="sex"
+                        value="M"
+                        onChange={e => setSex(e.target.value)}
+                        required
+                        />
+                        <label htmlFor="M">Male</label>
+                    </div>
+                    <div className="radio">
+                        <input
+                        id="F"
+                        type="radio"
+                        name="sex"
+                        value="F"
+                        onChange={e => setSex(e.target.value)}
+                        />
+                        <label htmlFor="F">Female</label>
+                    </div>
                 </div>
                 <button>Create Reptile</button>
             </form>

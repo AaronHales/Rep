@@ -17,7 +17,7 @@ async function main() {
       reptiles: {
         create: [
           {
-            species: "ball_python",
+            species: "Ball Python",
             name: "Monty",
             sex: "m",
             feedings: {
@@ -77,7 +77,7 @@ async function main() {
 
           },
           {
-            species: "king_snake",
+            species: "King Snake",
             name: "Monty",
             sex: "f",
             feedings: {
