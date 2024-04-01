@@ -27,8 +27,8 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
   });
 
   router.post("/", authMiddleware, async (req, res) => {
-    if (typeof req.body.sex === "string" && typeof req.body.species === "string" && typeof req.body.name === "string") {
-        if (req.body.sex.toLowerCase() == 'm' || req.body.sex.toLowerCase() == 'f') {
+    if (typeof(req.body.sex) === "string" && typeof(req.body.species) === "string" && typeof(req.body.name) === "string") {
+        if (req.body.sex.toLowerCase() === 'm' || req.body.sex.toLowerCase() === 'f') {
             req.body.userId = req.user?.id;
             const reptile = await reptilesRepository.createReptile(req.body);
             
@@ -50,17 +50,17 @@ export const buildReptileController = (db: PrismaClient, reptilesRepository: Rep
             id: +req.params.id,
         }
     });
-    if (req.body.sex == null) {
+    if (req.body.sex === null) {
         req.body.sex = reptileToUpdate?.sex;
     }
-    if (req.body.name == null) {
+    if (req.body.name === null) {
         req.body.name = reptileToUpdate?.name;
     }
-    if (req.body.species == null) {
+    if (req.body.species === null) {
         req.body.species = reptileToUpdate?.sex;
     }
-    if (typeof req.body.sex === "string" && typeof req.body.species === "string" && typeof req.body.name === "string") {
-        if (req.body.sex.toLowerCase() == "m" || req.body.sex.toLowerCase() == "f") {
+    if (typeof(req.body.sex) === "string" && typeof(req.body.species) === "string" && typeof(req.body.name) === "string") {
+        if (req.body.sex.toLowerCase() === "m" || req.body.sex.toLowerCase() === "f") {
             req.body.id = +req.params.id;
             const reptile = await reptilesRepository.updateReptile(req.body);
     
