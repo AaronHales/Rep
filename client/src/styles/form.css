@@ -33,3 +33,7 @@
 .radio {
     display: flex;
 }
+
+.type-selection {
+    padding: 6px;
+}
